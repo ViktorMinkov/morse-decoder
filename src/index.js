@@ -39,7 +39,20 @@ const MORSE_TABLE = {
 
 function decode(expr) {
     // write your solution here
+    let array = [];
+    const regexp =/[\w\W]{1,10}/g
+    const newExpr = expr.match(regexp);
+   newExpr.forEach(element => {
+        let result = element.replaceAll('10','.').replaceAll('11','-').replaceAll('00','').replaceAll('**********',' ');
+        if (result === ' ') {
+            array.push(result)
+        }else {
+            array.push(MORSE_TABLE[result]);
+        }        
+   });
+   return array.join('');
 }
+
 
 module.exports = {
     decode
